@@ -146,7 +146,7 @@
         </div>
 
     <script>
-        // BASE DE DATOS DE CLIENTES (Aquí agregas nuevos perfiles en el futuro)
+        // BASE DE DATOS DE CLIENTES (Solo Ericka activa)
         const CLIENTES = {
             "ericka2026": {
                 nombre: "Ericka Yanzaguano",
@@ -191,26 +191,17 @@
                         { c: "Comida 3", m: "100g de Pechuga de pollo desmechada\n+ 50g de Choclo desgranado cocido\n+ Ensalada mixta\n+ 5g de Aceite de oliva." },
                         { c: "Comida 4", m: "60g de Jamón de pavo\n+ 1 Manzana roja pequeña (80g)." },
                         { c: "Comida 5", m: "100g de Corvina a la plancha\n+ 80g de Papa chaucha cocida con cáscara\n+ Champiñones salteados\n+ 5g de Aceite de oliva." }
+                    ],
+                    sabado: [
+                        { c: "Desayuno", m: "4 Claras de huevo\n+ 1 Huevo entero (hervidos o revueltos sin aceite)\n+ 150g de Papaya\n+ 1 Taza grande de Té Verde." },
+                        { c: "Almuerzo", m: "150g de Pescado blanco (Tilapia o Corvina)\n+ 120g de Espárragos al vapor o a la plancha\n+ 100g de Papa cocida\n+ 5g de Aceite de oliva." },
+                        { c: "Cena", m: "150g de Pechuga de pollo (hervida o a la plancha)\n+ Ensalada grande de Pepino y apio con limón y poca sal." }
+                    ],
+                    domingo: [
+                        { c: "Desayuno", m: "4 Claras de huevo\n+ 40g de Avena cocida en agua\n+ 1 Manzana verde rallada o picada\n+ Té de Manzanilla o Jamaica." },
+                        { c: "Almuerzo", m: "150g de Pechuga de pavo o pollo a la plancha\n+ 150g de Calabacín (zucchini) asado o en crema (licuado solo con agua y sal, cero leche)\n+ 100g de Arroz blanco." },
+                        { c: "Cena", m: "1 Lata de Atún en agua\n+ Ensalada de Espinaca fresca y Tomate\n+ 2 Galletas de arroz inflado\n+ 5g de Aceite de oliva." }
                     ]
-                }
-            },
-            "carlos2026": {
-                nombre: "Carlos Andrade",
-                objetivo: "Aumento Masa Muscular",
-                peso: "72.0 kg",
-                meta: "78.0 kg",
-                grasa: "14.5%",
-                calorias: "2800 kcal",
-                idStorage: "carlos",
-                dieta: {
-                    lunes: [
-                        { c: "Comida 1", m: "3 Huevos enteros\n+ 80g de Avena\n+ 1 Plátano grande." },
-                        { c: "Comida 2", m: "150g de Pechuga de pollo\n+ 150g de Arroz blanco." },
-                        { c: "Comida 3", m: "150g de Carne de res\n+ 200g de Papa cocida." },
-                        { c: "Comida 4", m: "1 Lata de Atún\n+ 4 Galletas de arroz\n+ 1 Aguacate mediano." },
-                        { c: "Comida 5", m: "150g de Tilapia\n+ Ensalada verde\n+ 10g de Aceite de oliva." }
-                    ]
-                    // Se pueden estructurar los demás días igual
                 }
             }
         };
@@ -241,7 +232,6 @@
             const c = clienteActivo;
             const container = document.getElementById('main-content');
 
-            // Generar pestañas de días disponibles dinámicamente
             let tabsHTML = '';
             let contentHTML = '';
             const dias = Object.keys(c.dieta);
@@ -285,7 +275,7 @@
                         <thead>
                             <tr>
                                 <th>Hábito</th>
-                                <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th>
+                                <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -324,10 +314,9 @@
             event.currentTarget.classList.add('active');
         }
 
-        // Render de la fila de hábitos con persistencia de datos local
         function renderHabitRow(label, key, clientId) {
             let row = `<tr><td class="habit-label">${label}</td>`;
-            const dias = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab'];
+            const dias = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
             dias.forEach(d => {
                 const storageKey = `${clientId}_${key}_${d}`;
                 const checked = localStorage.getItem(storageKey) === 'true' ? 'checked' : '';
@@ -349,7 +338,6 @@
             localStorage.setItem(key, chk.checked);
         }
 
-        // Registro de Peso Local
         function guardarProgreso(clientId) {
             const sem = document.getElementById('prog-semana').value.trim();
             const peso = document.getElementById('prog-peso').value.trim();
