@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Nutricional - Ericka Yanzaguano</title>
+    <title>Dashboard Fit - Personal Trainer Anthony</title>
     <style>
-        /* Paleta de Colores Extraída Exactamente del Logo */
         :root {
-            --primary: #ae3527;      /* Terracota / Guinda corporativo */
-            --accent: #8e281c;       /* Variante más oscura para realces */
-            --gold-light: #f5f2d5;   /* Fondo suave derivado del arena */
-            --text-dark: #11110d;    /* Oscuro profundo de la marca */
-            --card-bg: rgba(255, 255, 255, 0.94);
-            --bg-light: #fdfcf7;
+            --primary: #ae3527;      
+            --accent: #11110d;       
+            --gold-bg: #e6e0a1;      
+            --bg-light: #fdfcf7;     
+            --text-dark: #11110d;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --border-color: rgba(174, 53, 39, 0.12);
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            -webkit-user-select: none;
-            user-select: none;
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
         }
 
         body {
             background-color: var(--bg-light);
-            /* Fondo con el logo integrado de forma sutil y elegante */
-            background-image: linear-gradient(rgba(253, 252, 247, 0.88), rgba(253, 252, 247, 0.88)), url('image_b43163.jpg');
+            background-image: linear-gradient(rgba(253, 252, 247, 0.92), rgba(253, 252, 247, 0.92)), url('image_b43163.jpg');
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -37,395 +33,360 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-bottom: 30px;
         }
 
-        /* Protección básica al intentar imprimir */
-        @media print {
-            body { display: none !important; }
-        }
-
-        /* Pantalla de Bloqueo Totalmente Compatible con WhatsApp */
+        /* Login */
         #login-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--primary), #5c1810);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: white;
-            padding: 24px;
+            background: linear-gradient(135deg, var(--accent), #2c0b07);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; color: white; padding: 24px;
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.12);
-            padding: 35px 25px;
-            border-radius: 20px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            max-width: 360px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px 25px; border-radius: 24px; text-align: center;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            max-width: 360px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .login-box h2 { 
-            margin-bottom: 10px; 
-            font-size: 1.5rem; 
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .login-box p {
-            font-size: 0.9rem;
-            color: #f3d5d2;
-            margin-bottom: 25px;
+        .brand-badge {
+            width: 85px; height: 85px;
+            background-image: url('image_b43163.jpg');
+            background-size: cover; background-position: center;
+            border-radius: 50%; margin: 0 auto 20px auto;
+            border: 2px solid var(--primary);
         }
 
-        .login-box input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            outline: none;
-            text-align: center;
-            font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--text-dark);
-        }
+        .login-box h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 5px; }
+        .login-box p { font-size: 0.85rem; color: var(--gold-bg); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .login-box input { width: 100%; padding: 15px; margin-bottom: 12px; border: none; border-radius: 12px; text-align: center; font-size: 1.1rem; }
+        #error-message { color: #ff6b6b; font-size: 0.85rem; margin-bottom: 15px; display: none; font-weight: bold; }
+        .login-box button { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 12px; cursor: pointer; font-size: 1rem; width: 100%; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; box-shadow: 0 4px 15px rgba(174, 53, 39, 0.4); }
 
-        /* Mensaje de error integrado sin usar alert() de navegador */
-        #error-message {
-            color: #ffcccc;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            display: none;
-            font-weight: bold;
-        }
-
-        .login-box button {
-            background: #e6e0a1; /* Color arena/dorado del logo para el botón principal */
-            color: var(--text-dark);
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            width: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: background 0.2s;
-        }
-
-        .login-box button:active {
-            background: #d4cd8a;
-        }
-
-        /* Contenedor de la Dieta (Oculto inicialmente) */
-        .container {
-            width: 100%;
-            max-width: 480px;
-            padding: 20px;
-            display: none; 
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
+        /* Main Container */
+        .container { width: 100%; max-width: 480px; padding: 15px; display: none; }
 
         header {
-            text-align: center;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            padding: 24px 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(174, 53, 39, 0.06);
-            border: 1px solid rgba(174, 53, 39, 0.08);
+            text-align: center; margin-bottom: 20px; background: var(--card-bg);
+            padding: 24px 20px; border-radius: 24px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(174, 53, 39, 0.06); position: relative; overflow: hidden;
         }
+        header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--primary), var(--gold-bg), var(--accent)); }
+        header h1 { font-size: 1.5rem; color: var(--accent); font-weight: 800; }
+        header p { font-size: 0.85rem; color: var(--primary); margin-top: 4px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
 
-        header h1 { 
-            font-size: 1.5rem; 
-            color: var(--primary); 
-            font-weight: 700;
-        }
-        header p { 
-            font-size: 0.9rem; 
-            color: #666; 
-            margin-top: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        /* Métricas Premium */
-        .metrics {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            border-top: 1px solid #f0e6e5;
-            padding-top: 18px;
-        }
+        .metrics { display: flex; justify-content: space-around; margin-top: 15px; border-top: 1px solid #f2eceb; padding-top: 15px; }
         .metric-item { text-align: center; }
-        .metric-item span { display: block; font-size: 0.75rem; color: #777; text-transform: uppercase; }
-        .metric-item strong { color: var(--primary); font-size: 1.2rem; font-weight: 700; }
+        .metric-item span { display: block; font-size: 0.65rem; color: #666; text-transform: uppercase; }
+        .metric-item strong { color: var(--primary); font-size: 1.1rem; font-weight: 700; }
 
-        /* Selector de Días Horizontal */
-        .tabs {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            margin-bottom: 22px;
-            padding-bottom: 8px;
-            width: 100%;
-            scrollbar-width: none;
-        }
+        .section-title { font-size: 1.1rem; color: var(--accent); margin: 25px 0 12px 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .section-title span { color: var(--primary); }
+
+        /* Tabs Días */
+        .tabs { display: flex; overflow-x: auto; gap: 8px; margin-bottom: 15px; padding-bottom: 5px; scrollbar-width: none; }
         .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: 700; color: var(--primary); white-space: nowrap; font-size: 0.85rem; }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(174, 53, 39, 0.25); }
 
-        .tab-btn {
-            background: var(--card-bg);
-            border: 1px solid rgba(174, 53, 39, 0.15);
-            padding: 10px 22px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--primary);
-            white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
+        .meal-card { background: var(--card-bg); border-radius: 16px; padding: 18px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.01); border-left: 5px solid var(--primary); }
+        .meal-card:nth-child(even) { border-left-color: var(--accent); }
+        .meal-header { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); font-weight: 800; margin-bottom: 6px; }
+        .meal-card:nth-child(even) .meal-header { color: #5c1810; }
+        .meal-body { font-size: 0.95rem; line-height: 1.5; color: var(--text-dark); white-space: pre-line; font-weight: 500; }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(174, 53, 39, 0.25);
-        }
+        /* Control de Hábitos */
+        .habits-card { background: var(--card-bg); border-radius: 20px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.01); border: 1px solid var(--border-color); overflow-x: auto; }
+        .habits-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85rem; }
+        .habits-table th { padding: 8px 4px; color: var(--accent); font-weight: 700; border-bottom: 2px solid var(--border-color); font-size: 0.75rem; text-transform: uppercase; }
+        .habits-table td { padding: 10px 4px; border-bottom: 1px solid rgba(0,0,0,0.04); font-weight: 600; }
+        .habit-label { text-align: left; color: var(--primary); font-weight: 700; font-size: 0.8rem; }
+        
+        /* Checkbox Personalizado */
+        .check-container { display: inline-block; position: relative; cursor: pointer; width: 22px; height: 22px; }
+        .check-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+        .checkmark { position: absolute; top: 0; left: 0; height: 22px; width: 22px; background-color: #eee; border-radius: 6px; transition: all 0.2s; }
+        .check-container:hover input ~ .checkmark { background-color: #ccc; }
+        .check-container input:checked ~ .checkmark { background-color: var(--primary); }
+        .checkmark:after { content: ""; position: absolute; display: none; }
+        .check-container input:checked ~ .checkmark:after { display: block; }
+        .check-container .checkmark:after { left: 8px; top: 4px; width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
-        /* Tarjetas de comidas */
-        .day-content { display: none; }
-        .day-content.active { display: block; }
-
-        .meal-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
-            border-left: 5px solid var(--primary);
-            border-top: 1px solid rgba(0,0,0,0.01);
-        }
-
-        .meal-header {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .meal-body {
-            font-size: 1.05rem;
-            line-height: 1.55;
-            color: var(--text-dark);
-            white-space: pre-line;
-        }
-
-        /* Sistema Anti-Capturas por Desenfoque */
-        .blur-protection {
-            filter: blur(20px) !important;
-            pointer-events: none;
-        }
+        /* Progreso del Cliente */
+        .progress-card { background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.01); }
+        .progress-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 15px; }
+        .progress-field { display: flex; flex-direction: column; }
+        .progress-field label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #666; margin-bottom: 4px; }
+        .progress-field input { padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; font-size: 0.9rem; font-weight: 600; text-align: center; }
+        .progress-card button { background: var(--accent); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; cursor: pointer; }
+        .progress-history { margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 12px; font-size: 0.85rem; }
+        .history-item { display: flex; justify-content: space-between; padding: 6px 4px; border-bottom: 1px dashed rgba(0,0,0,0.05); font-weight: 500; }
+        .history-item span { color: #555; }
+        .history-item strong { color: var(--primary); }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-box">
-            <h2>PLAN NUTRICIONAL</h2>
-            <p>Acceso Privado Exclusivo</p>
+            <div class="brand-badge"></div>
+            <h2>PERSONAL TRAINER</h2>
+            <p>Anthony Méndez</p>
             <div id="error-message">Contraseña incorrecta. Inténtalo de nuevo.</div>
-            <input type="password" id="password-input" placeholder="Introduce tu clave de acceso" inputmode="text">
-            <button onclick="checkPassword()">Ingresar al Plan</button>
+            <input type="password" id="password-input" placeholder="Clave de acceso">
+            <button onclick="checkPassword()">Ingresar al Sistema</button>
         </div>
     </div>
 
     <div class="container" id="main-content">
-        <header>
-            <h1>Ericka Yanzaguano</h1>
-            <p>Objetivo: Déficit Calórico</p>
-            <div class="metrics">
-                <div class="metric-item"><span>Peso Meta</span><strong>42 kg</strong></div>
-                <div class="metric-item"><span>Grasa</span><strong>23.2%</strong></div>
-                <div class="metric-item"><span>Calorías</span><strong>1150 kcal</strong></div>
-            </div>
-        </header>
-
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchDay('lunes', event)">Lunes</button>
-            <button class="tab-btn" onclick="switchDay('martes', event)">Martes</button>
-            <button class="tab-btn" onclick="switchDay('miercoles', event)">Miércoles</button>
-            <button class="tab-btn" onclick="switchDay('jueves', event)">Jueves</button>
-            <button class="tab-btn" onclick="switchDay('viernes', event)">Viernes</button>
         </div>
-
-        <div id="lunes" class="day-content active">
-            <div class="meal-card">
-                <div class="meal-header">Comida 1</div>
-                <div class="meal-body">2 Huevos enteros revueltos&#10;+ 50g de Jamón de pavo&#10;+ 25g de Avena en hojuelas (preparada con agua y estevia).</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 2</div>
-                <div class="meal-body">1 Huevo entero duro&#10;+ 2 claras de huevo duro&#10;+ 80g de Manzana verde.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 3</div>
-                <div class="meal-body">100g de Pechuga de pollo a la plancha&#10;+ 100g de Arroz blanco&#10;+ Ensalada de pepino y lechuga&#10;+ 5g de Aceite de oliva.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 4</div>
-                <div class="meal-body">80g de Atún en agua (escurrido)&#10;+ 2 Galletas de arroz inflado.</div>
-            </div>
-        </div>
-
-        <div id="martes" class="day-content">
-            <div class="meal-card">
-                <div class="meal-header">Comida 1</div>
-                <div class="meal-body">1 Huevo entero&#10;+ 3 claras&#10;+ 30g de Arepa de maíz (o 1 tortilla de maíz).</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 2</div>
-                <div class="meal-body">60g de Jamón de pavo rebanado&#10;+ 150g de Papaya picada.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 3</div>
-                <div class="meal-body">100g de Lomo fino de res (magro)&#10;+ 80g de Quinoa cocida&#10;+ Vainitas salteadas&#10;+ 5g de Aceite de oliva.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 4</div>
-                <div class="meal-body">Claras de huevo duro&#10;+ 100g de Arándanos o Frutillas.</div>
-            </div>
-        </div>
-
-        <div id="miercoles" class="day-content">
-            <div class="meal-card">
-                <div class="meal-header">Comida 1</div>
-                <div class="meal-body">Pancakes de avena:&#10;Licuar: 1 huevo entero + 3 claras + 25g de avena + canela y estevia.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 2</div>
-                <div class="meal-body">80g de Pechuga de pollo fría (picada)&#10;+ 150g de Melón.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 3</div>
-                <div class="meal-body">100g de Pescado Picudo a la plancha&#10;+ 80g de Lentejas cocidas&#10;+ Ensalada de col y zanahoria&#10;+ 5g de Aceite de oliva.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 4</div>
-                <div class="meal-body">80g de Atún en agua&#10;+ 100g de Piña picada.</div>
-            </div>
-        </div>
-
-        <div id="jueves" class="day-content">
-            <div class="meal-card">
-                <div class="meal-header">Comida 1</div>
-                <div class="meal-body">Omelette de champiñones (1 huevo entero + 3 claras)&#10;+ 1 Rebanada de pan integral tostado (25g).</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 2</div>
-                <div class="meal-body">60g de Jamón de pavo&#10;+ 1 Durazno mediano (100g).</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 3</div>
-                <div class="meal-body">100g de Filete de Salmón al horno&#10;+ 100g de Arroz integral&#10;+ Espárragos.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 4</div>
-                <div class="meal-body">4 Claras de huevo revueltas&#10;+ 2 Galletas de arroz inflado.</div>
-            </div>
-        </div>
-
-        <div id="viernes" class="day-content">
-            <div class="meal-card">
-                <div class="meal-header">Comida 1</div>
-                <div class="meal-body">1 Huevo entero revuelto&#10;+ 3 claras&#10;+ 60g de Mote cocido.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 2</div>
-                <div class="meal-body">80g de Atún en agua&#10;+ 100g de Kiwi o Fresas.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 3</div>
-                <div class="meal-body">100g de Pechuga de pollo desmechada&#10;+ 50g de Choclo desgranado cocido&#10;+ Ensalada mixta&#10;+ 5g de Aceite de oliva.</div>
-            </div>
-            <div class="meal-card">
-                <div class="meal-header">Comida 4</div>
-                <div class="meal-body">60g de Jamón de pavo&#10;+ 100g de Durazno o Frutillas.</div>
-            </div>
-        </div>
-
-    </div>
 
     <script>
-        // CONTRASEÑA MÁSTER
-        const ACCESO_PASS = "ericka2026"; 
+        // BASE DE DATOS DE CLIENTES (Aquí agregas nuevos perfiles en el futuro)
+        const CLIENTES = {
+            "ericka2026": {
+                nombre: "Ericka Yanzaguano",
+                objetivo: "Déficit Calórico",
+                peso: "54.4 kg",
+                meta: "42.0 kg",
+                grasa: "23.2%",
+                calorias: "1150 kcal",
+                idStorage: "ericka",
+                dieta: {
+                    lunes: [
+                        { c: "Comida 1", m: "2 Huevos enteros revueltos\n+ 50g de Jamón de pavo\n+ 25g de Avena en hojuelas (preparada con agua y estevia)." },
+                        { c: "Comida 2", m: "1 Huevo entero duro\n+ 2 claras de huevo duro\n+ 80g de Manzana verde." },
+                        { c: "Comida 3", m: "100g de Pechuga de pollo a la plancha\n+ 100g de Arroz blanco\n+ Ensalada de pepino y lechuga\n+ 5g de Aceite de oliva." },
+                        { c: "Comida 4", m: "80g de Atún en agua (escurrido)\n+ 2 Galletas de arroz inflado." },
+                        { c: "Comida 5", m: "100g de Filete de Tilapia\n+ 80g de Papa blanca cocida\n+ Brócoli al vapor\n+ 5g de Aceite de oliva." }
+                    ],
+                    martes: [
+                        { c: "Comida 1", m: "1 Huevo entero\n+ 3 claras\n+ 30g de Arepa de maíz (o 1 tortilla de maíz)." },
+                        { c: "Comida 2", m: "60g de Jamón de pavo rebanado\n+ 150g de Papaya picada." },
+                        { c: "Comida 3", m: "100g de Lomo fino de res (magro)\n+ 80g de Quinoa cocida\n+ Vainitas salteadas\n+ 5g de Aceite de oliva." },
+                        { c: "Comida 4", m: "Claras de huevo duro\n+ 100g de Arándanos o Frutillas." },
+                        { c: "Comida 5", m: "120g de Camarones al ajillo (sin mantequilla)\n+ 80g de Camote cocido\n+ Calabacín asado\n+ 5g de Aceite de oliva." }
+                    ],
+                    miercoles: [
+                        { c: "Comida 1", m: "Pancakes de avena:\nLicuar: 1 huevo entero + 3 claras + 25g de avena + canela y estevia." },
+                        { c: "Comida 2", m: "80g de Pechuga de pollo fría (picada)\n+ 150g de Melón." },
+                        { c: "Comida 3", m: "100g de Pescado Picudo a la plancha\n+ 80g de Lentejas cocidas\n+ Ensalada de col y zanahoria\n+ 5g de Aceite de oliva." },
+                        { c: "Comida 4", m: "80g de Atún en agua\n+ 100g de Piña picada." },
+                        { c: "Comida 5", m: "100g de Carne magra de res\n+ 80g de Fideos de trigo cocidos\n+ Espinaca al vapor\n+ 5g de Aceite de oliva." }
+                    ],
+                    jueves: [
+                        { c: "Comida 1", m: "Omelette de champiñones (1 huevo entero + 3 claras)\n+ 1 Rebanada de pan integral tostado (25g)." },
+                        { c: "Comida 2", m: "60g de Jamón de pavo\n+ 1 Durazno mediano (100g)." },
+                        { c: "Comida 3", m: "100g de Filete de Salmón al horno\n+ 100g de Arroz integral\n+ Espárragos." },
+                        { c: "Comida 4", m: "4 Claras de huevo revueltas\n+ 2 Galletas de arroz inflado." },
+                        { c: "Comida 5", m: "100g de Pechuga de pavo a la plancha\n+ 80g de Yuca cocida\n+ Tomate en rodajas\n+ 5g de Aceite de oliva." }
+                    ],
+                    viernes: [
+                        { c: "Comida 1", m: "1 Huevo entero revuelto\n+ 3 claras\n+ 60g de Mote cocido." },
+                        { c: "Comida 2", m: "80g de Atún en agua\n+ 100g de Kiwi o Fresas." },
+                        { c: "Comida 3", m: "100g de Pechuga de pollo desmechada\n+ 50g de Choclo desgranado cocido\n+ Ensalada mixta\n+ 5g de Aceite de oliva." },
+                        { c: "Comida 4", m: "60g de Jamón de pavo\n+ 1 Manzana roja pequeña (80g)." },
+                        { c: "Comida 5", m: "100g de Corvina a la plancha\n+ 80g de Papa chaucha cocida con cáscara\n+ Champiñones salteados\n+ 5g de Aceite de oliva." }
+                    ]
+                }
+            },
+            "carlos2026": {
+                nombre: "Carlos Andrade",
+                objetivo: "Aumento Masa Muscular",
+                peso: "72.0 kg",
+                meta: "78.0 kg",
+                grasa: "14.5%",
+                calorias: "2800 kcal",
+                idStorage: "carlos",
+                dieta: {
+                    lunes: [
+                        { c: "Comida 1", m: "3 Huevos enteros\n+ 80g de Avena\n+ 1 Plátano grande." },
+                        { c: "Comida 2", m: "150g de Pechuga de pollo\n+ 150g de Arroz blanco." },
+                        { c: "Comida 3", m: "150g de Carne de res\n+ 200g de Papa cocida." },
+                        { c: "Comida 4", m: "1 Lata de Atún\n+ 4 Galletas de arroz\n+ 1 Aguacate mediano." },
+                        { c: "Comida 5", m: "150g de Tilapia\n+ Ensalada verde\n+ 10g de Aceite de oliva." }
+                    ]
+                    // Se pueden estructurar los demás días igual
+                }
+            }
+        };
+
+        let clienteActivo = null;
 
         function checkPassword() {
-            const input = document.getElementById('password-input').value;
+            const input = document.getElementById('password-input').value.trim();
             const errorMsg = document.getElementById('error-message');
-            const mainContent = document.getElementById('main-content');
             
-            if (input.trim() === ACCESO_PASS) {
-                // Ocultar login de manera limpia
+            if (CLIENTES[input]) {
                 document.getElementById('login-screen').style.display = 'none';
-                
-                // Mostrar contenedor principal con animación suave
+                clienteActivo = CLIENTES[input];
+                renderDashboard();
+                const mainContent = document.getElementById('main-content');
                 mainContent.style.display = 'block';
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                }, 50);
             } else {
                 errorMsg.style.display = 'block';
                 document.getElementById('password-input').value = '';
             }
         }
 
-        // Detectar tecla Enter en el teclado móvil/computadora
         document.getElementById('password-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
+            if (e.key === 'Enter') checkPassword();
         });
 
-        // Cambio de pestañas compatible con eventos táctiles
-        function switchDay(dayId, event) {
-            document.querySelectorAll('.day-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
+        function renderDashboard() {
+            const c = clienteActivo;
+            const container = document.getElementById('main-content');
+
+            // Generar pestañas de días disponibles dinámicamente
+            let tabsHTML = '';
+            let contentHTML = '';
+            const dias = Object.keys(c.dieta);
+            
+            dias.forEach((dia, idx) => {
+                const activeClass = idx === 0 ? 'active' : '';
+                tabsHTML += `<button class="tab-btn ${activeClass}" onclick="switchDay('${dia}', event)">${dia.charAt(0).toUpperCase() + dia.slice(1)}</button>`;
+                
+                let mealsHTML = '';
+                c.dieta[dia].forEach(comida => {
+                    mealsHTML += `
+                        <div class="meal-card">
+                            <div class="meal-header">${comida.c}</div>
+                            <div class="meal-body">${comida.m}</div>
+                        </div>
+                    `;
+                });
+
+                contentHTML += `<div id="dia-${dia}" class="day-content ${activeClass}" style="display: ${idx === 0 ? 'block' : 'none'};">${mealsHTML}</div>`;
             });
 
-            document.getElementById(dayId).classList.add('active');
-            if(event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
-            }
+            container.innerHTML = `
+                <header>
+                    <h1>${c.nombre}</h1>
+                    <p>Objetivo: ${c.objetivo}</p>
+                    <div class="metrics">
+                        <div class="metric-item"><span>Peso Act.</span><strong>${c.peso}</strong></div>
+                        <div class="metric-item"><span>Meta</span><strong>${c.meta}</strong></div>
+                        <div class="metric-item"><span>Grasa</span><strong>${c.grasa}</strong></div>
+                        <div class="metric-item"><span>Calorías</span><strong>${c.calorias}</strong></div>
+                    </div>
+                </header>
+
+                <div class="section-title"><span>▶</span> Tu Plan Nutricional</div>
+                <div class="tabs">${tabsHTML}</div>
+                <div id="dieta-container">${contentHTML}</div>
+
+                <div class="section-title"><span>✔</span> Control de Hábitos</div>
+                <div class="habits-card">
+                    <table class="habits-table">
+                        <thead>
+                            <tr>
+                                <th>Hábito</th>
+                                <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${renderHabitRow('Agua 💧', 'agua', c.idStorage)}
+                            ${renderHabitRow('Entreno 🏋️', 'entreno', c.idStorage)}
+                            ${renderHabitRow('Sueño 😴', 'sueno', c.idStorage)}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-title"><span>📈</span> Registro de Progreso</div>
+                <div class="progress-card">
+                    <div class="progress-grid">
+                        <div class="progress-field">
+                            <label>Semana</label>
+                            <input type="text" id="prog-semana" placeholder="Ej: Sem 2">
+                        </div>
+                        <div class="progress-field">
+                            <label>Peso (kg)</label>
+                            <input type="number" id="prog-peso" step="0.1" placeholder="Ej: 53.8">
+                        </div>
+                    </div>
+                    <button onclick="guardarProgreso('${c.idStorage}')">Registrar Peso</button>
+                    <div class="progress-history" id="historial-progreso">
+                        </div>
+                </div>
+            `;
+            
+            cargarHistorial(c.idStorage);
         }
 
-        // SISTEMA ANTI-SCREENSHOT (Desenfoque automático al cambiar de app en el móvil)
-        window.addEventListener('blur', () => {
-            document.getElementById('main-content').classList.add('blur-protection');
-        });
-        window.addEventListener('focus', () => {
-            document.getElementById('main-content').classList.remove('blur-protection');
-        });
+        function switchDay(diaId, event) {
+            document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('dia-' + diaId).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
 
-        // Deshabilitar menú contextual táctil prolongado
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        // Render de la fila de hábitos con persistencia de datos local
+        function renderHabitRow(label, key, clientId) {
+            let row = `<tr><td class="habit-label">${label}</td>`;
+            const dias = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab'];
+            dias.forEach(d => {
+                const storageKey = `${clientId}_${key}_${d}`;
+                const checked = localStorage.getItem(storageKey) === 'true' ? 'checked' : '';
+                row += `
+                    <td>
+                        <label class="check-container">
+                            <input type="checkbox" id="${storageKey}" ${checked} onchange="toggleHabit('${storageKey}')">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                `;
+            });
+            row += '</tr>';
+            return row;
+        }
+
+        function toggleHabit(key) {
+            const chk = document.getElementById(key);
+            localStorage.setItem(key, chk.checked);
+        }
+
+        // Registro de Peso Local
+        function guardarProgreso(clientId) {
+            const sem = document.getElementById('prog-semana').value.trim();
+            const peso = document.getElementById('prog-peso').value.trim();
+
+            if(!sem || !peso) return alert("Por favor, llena ambos campos.");
+
+            const storageKey = `${clientId}_historial`;
+            let historial = JSON.parse(localStorage.getItem(storageKey)) || [];
+            historial.push({ semana: sem, peso: peso });
+            localStorage.setItem(storageKey, JSON.stringify(historial));
+
+            document.getElementById('prog-semana').value = '';
+            document.getElementById('prog-peso').value = '';
+            cargarHistorial(clientId);
+        }
+
+        function cargarHistorial(clientId) {
+            const storageKey = `${clientId}_historial`;
+            const historial = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const container = document.getElementById('historial-progreso');
+
+            if(historial.length === 0) {
+                container.innerHTML = `<p style="color:#888; text-align:center; font-size:0.8rem;">No hay pesos registrados todavía.</p>`;
+                return;
+            }
+
+            let html = '<p style="font-weight:700; margin-bottom:8px; font-size:0.8rem; text-transform:uppercase; color:var(--accent);">Historial de Peso:</p>';
+            historial.forEach(item => {
+                html += `
+                    <div class="history-item">
+                        <span>${item.semana}</span>
+                        <strong>${item.peso} kg</strong>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
     </script>
 </body>
 </html>
