@@ -146,7 +146,6 @@
         </div>
 
     <script>
-        // BASE DE DATOS DE CLIENTES (Solo Ericka activa)
         const CLIENTES = {
             "ericka2026": {
                 nombre: "Ericka Yanzaguano",
@@ -157,47 +156,47 @@
                 calorias: "1150 kcal",
                 idStorage: "ericka",
                 dieta: {
-                    lunes: [
+                    "lunes": [
                         { c: "Comida 1", m: "2 Huevos enteros revueltos\n+ 50g de Jamón de pavo\n+ 25g de Avena en hojuelas (preparada con agua y estevia)." },
                         { c: "Comida 2", m: "1 Huevo entero duro\n+ 2 claras de huevo duro\n+ 80g de Manzana verde." },
                         { c: "Comida 3", m: "100g de Pechuga de pollo a la plancha\n+ 100g de Arroz blanco\n+ Ensalada de pepino y lechuga\n+ 5g de Aceite de oliva." },
                         { c: "Comida 4", m: "80g de Atún en agua (escurrido)\n+ 2 Galletas de arroz inflado." },
                         { c: "Comida 5", m: "100g de Filete de Tilapia\n+ 80g de Papa blanca cocida\n+ Brócoli al vapor\n+ 5g de Aceite de oliva." }
                     ],
-                    martes: [
+                    "martes": [
                         { c: "Comida 1", m: "1 Huevo entero\n+ 3 claras\n+ 30g de Arepa de maíz (o 1 tortilla de maíz)." },
                         { c: "Comida 2", m: "60g de Jamón de pavo rebanado\n+ 150g de Papaya picada." },
                         { c: "Comida 3", m: "100g de Lomo fino de res (magro)\n+ 80g de Quinoa cocida\n+ Vainitas salteadas\n+ 5g de Aceite de oliva." },
                         { c: "Comida 4", m: "Claras de huevo duro\n+ 100g de Arándanos o Frutillas." },
                         { c: "Comida 5", m: "120g de Camarones al ajillo (sin mantequilla)\n+ 80g de Camote cocido\n+ Calabacín asado\n+ 5g de Aceite de oliva." }
                     ],
-                    miercoles: [
+                    "miércoles": [
                         { c: "Comida 1", m: "Pancakes de avena:\nLicuar: 1 huevo entero + 3 claras + 25g de avena + canela y estevia." },
                         { c: "Comida 2", m: "80g de Pechuga de pollo fría (picada)\n+ 150g de Melón." },
                         { c: "Comida 3", m: "100g de Pescado Picudo a la plancha\n+ 80g de Lentejas cocidas\n+ Ensalada de col y zanahoria\n+ 5g de Aceite de oliva." },
                         { c: "Comida 4", m: "80g de Atún en agua\n+ 100g de Piña picada." },
                         { c: "Comida 5", m: "100g de Carne magra de res\n+ 80g de Fideos de trigo cocidos\n+ Espinaca al vapor\n+ 5g de Aceite de oliva." }
                     ],
-                    jueves: [
+                    "jueves": [
                         { c: "Comida 1", m: "Omelette de champiñones (1 huevo entero + 3 claras)\n+ 1 Rebanada de pan integral tostado (25g)." },
                         { c: "Comida 2", m: "60g de Jamón de pavo\n+ 1 Durazno mediano (100g)." },
                         { c: "Comida 3", m: "100g de Filete de Salmón al horno\n+ 100g de Arroz integral\n+ Espárragos." },
                         { c: "Comida 4", m: "4 Claras de huevo revueltas\n+ 2 Galletas de arroz inflado." },
                         { c: "Comida 5", m: "100g de Pechuga de pavo a la plancha\n+ 80g de Yuca cocida\n+ Tomate en rodajas\n+ 5g de Aceite de oliva." }
                     ],
-                    viernes: [
+                    "viernes": [
                         { c: "Comida 1", m: "1 Huevo entero revuelto\n+ 3 claras\n+ 60g de Mote cocido." },
                         { c: "Comida 2", m: "80g de Atún en agua\n+ 100g de Kiwi o Fresas." },
                         { c: "Comida 3", m: "100g de Pechuga de pollo desmechada\n+ 50g de Choclo desgranado cocido\n+ Ensalada mixta\n+ 5g de Aceite de oliva." },
                         { c: "Comida 4", m: "60g de Jamón de pavo\n+ 1 Manzana roja pequeña (80g)." },
                         { c: "Comida 5", m: "100g de Corvina a la plancha\n+ 80g de Papa chaucha cocida con cáscara\n+ Champiñones salteados\n+ 5g de Aceite de oliva." }
                     ],
-                    sabado: [
-                        { c: "Desayuno", m: "4 Claras de huevo\n+ 1 Huevo entero (hervidos o revueltos sin aceite)\n+ 150g de Papaya\n+ 1 Taza grande de Té Verde." },
+                    "sábado": [
+                        { c: "Desayuno", m: "4 Claras de huevo + 1 Huevo entero (hervidos o revueltos sin aceite)\n+ 150g de Papaya\n+ 1 Taza grande de Té Verde." },
                         { c: "Almuerzo", m: "150g de Pescado blanco (Tilapia o Corvina)\n+ 120g de Espárragos al vapor o a la plancha\n+ 100g de Papa cocida\n+ 5g de Aceite de oliva." },
                         { c: "Cena", m: "150g de Pechuga de pollo (hervida o a la plancha)\n+ Ensalada grande de Pepino y apio con limón y poca sal." }
                     ],
-                    domingo: [
+                    "domingo": [
                         { c: "Desayuno", m: "4 Claras de huevo\n+ 40g de Avena cocida en agua\n+ 1 Manzana verde rallada o picada\n+ Té de Manzanilla o Jamaica." },
                         { c: "Almuerzo", m: "150g de Pechuga de pavo o pollo a la plancha\n+ 150g de Calabacín (zucchini) asado o en crema (licuado solo con agua y sal, cero leche)\n+ 100g de Arroz blanco." },
                         { c: "Cena", m: "1 Lata de Atún en agua\n+ Ensalada de Espinaca fresca y Tomate\n+ 2 Galletas de arroz inflado\n+ 5g de Aceite de oliva." }
@@ -216,8 +215,7 @@
                 document.getElementById('login-screen').style.display = 'none';
                 clienteActivo = CLIENTES[input];
                 renderDashboard();
-                const mainContent = document.getElementById('main-content');
-                mainContent.style.display = 'block';
+                document.getElementById('main-content').style.display = 'block';
             } else {
                 errorMsg.style.display = 'block';
                 document.getElementById('password-input').value = '';
@@ -238,7 +236,7 @@
             
             dias.forEach((dia, idx) => {
                 const activeClass = idx === 0 ? 'active' : '';
-                tabsHTML += `<button class="tab-btn ${activeClass}" onclick="switchDay('${dia}', event)">${dia.charAt(0).toUpperCase() + dia.slice(1)}</button>`;
+                tabsHTML += `<button class="tab-btn ${activeClass}" onclick="switchDay('${dia}', event)">${dia.toUpperCase()}</button>`;
                 
                 let mealsHTML = '';
                 c.dieta[dia].forEach(comida => {
@@ -250,7 +248,7 @@
                     `;
                 });
 
-                contentHTML += `<div id="dia-${dia}" class="day-content ${activeClass}" style="display: ${idx === 0 ? 'block' : 'none'};">${mealsHTML}</div>`;
+                contentHTML += `<div id="dia-${dia}" class="day-content" style="display: ${idx === 0 ? 'block' : 'none'};">${mealsHTML}</div>`;
             });
 
             container.innerHTML = `
@@ -299,8 +297,7 @@
                         </div>
                     </div>
                     <button onclick="guardarProgreso('${c.idStorage}')">Registrar Peso</button>
-                    <div class="progress-history" id="historial-progreso">
-                        </div>
+                    <div class="progress-history" id="historial-progreso"></div>
                 </div>
             `;
             
@@ -316,8 +313,8 @@
 
         function renderHabitRow(label, key, clientId) {
             let row = `<tr><td class="habit-label">${label}</td>`;
-            const dias = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
-            dias.forEach(d => {
+            const diasShort = ['lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'dom'];
+            diasShort.forEach(d => {
                 const storageKey = `${clientId}_${key}_${d}`;
                 const checked = localStorage.getItem(storageKey) === 'true' ? 'checked' : '';
                 row += `
